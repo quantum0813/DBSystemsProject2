@@ -1,7 +1,7 @@
 <?php
 // Database login details
-define("HOST", "db1.cs.uakron.edu");
-define("USER", "esv5");
+define("HOST", "localhost");
+define("USER", "eric");
 define("PASSWORD", "password");
-define("DATABASE", "ISP_esv5");
+define("DATABASE", "dbsa2");
 ?>

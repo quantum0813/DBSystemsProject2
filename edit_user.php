@@ -12,23 +12,15 @@ include_once 'functions.php';
 	<body>
 		<?php
 			parse_str($_SERVER['QUERY_STRING']);
-			if ($action == "add")
+			if ($action == "add") {
 				echo('<h1>Add User</h1>');
-			else if ($action == "edit")
+			} else if ($action == "edit") {
 				echo('<h1>Edit User</h1>');
-
-			$userId = substr($id, 9);
-
-			$userInfo = getUserInfo($userId, $mysqli);
-			$dateObj = DateTime::createFromFormat("Y-m-d h:i:s", $userInfo[0]["date"]);
-			$formattedDate = $dateObj->format("m/d/Y");
+				$userInfo = getUserInfo($id, $mysqli);
+			}
 		?>
 		<form id="userDataForm">
 			<table>
-				<tr>
-					<td><span class="inputTitle">User ID</span></td>
-					<td><input id="userid" name="userid" type="text" <?php if ($action == "edit") echo('value="'.$userInfo[0]["id"].'"') ?> readonly></input></td>
-				</tr>
 				<tr>
 					<td><span class="inputTitle">First Name</span></td>
 					<td><input id="fname" name="fname" type="text" <?php if ($action == "edit") echo('value="'.$userInfo[0]["fname"].'"') ?>></input></td>
@@ -62,12 +54,8 @@ include_once 'functions.php';
                                         <td><input id="zip" name="zip" type="text" <?php if ($action == "edit") echo('value="'.$userInfo[0]["zip"].'"') ?>></input></td>
                                 </tr>
 				<tr>
-					<td><span class="inputTitle">Date Added</span></td>
-					<td><input id="add-date" name="add-date" type="text" <?php if ($action == "edit") echo('value="'.$formattedDate.'"') ?>></td>
-				</tr>
-				<tr>
 					<td><span class="inputTitle">Gender</span></td>
-					<td><input id="radioM" name="sex" type="radio" value="m" <?php if ($action == "edit" && $userInfo[0]["gender"] == "M") echo('checked="checked"') ?>>Male</input><input id="radioF" name="sex" type="radio" value="f" <?php if ($action == "edit" && $userInfo[0]["gender"] == "F") echo('checked="checked"') ?>>Female</input></td>
+					<td><input id="radioM" name="sex" type="radio" value="m" <?php if ($action == "edit" && $userInfo[0]["gender"] == "m") echo('checked="checked"') ?>>Male</input><input id="radioF" name="sex" type="radio" value="f" <?php if ($action == "edit" && $userInfo[0]["gender"] == "f") echo('checked="checked"') ?>>Female</input></td>
 				</tr>
 				<tr>
 					<?php
@@ -78,6 +66,10 @@ include_once 'functions.php';
 					?>
 					<td><input id="btnReset" type="reset" value="Reset"></input></td>
 				</tr>
+				<?php
+					if ($action == "edit")
+						echo('<tr><td><button id="btnRemove">Remove User</button></td></tr>');
+				?>
 			</table>
 		</form>
 	</body>

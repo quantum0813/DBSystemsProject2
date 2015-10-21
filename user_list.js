@@ -7,7 +7,7 @@ $(document).ready(function() {
 	
 	for (var i = 0; i < elems.length; i++) {
 		$(elems[i]).on('click', function() {
-			var url = "edit_user.php?action=edit" + "&id=" + this.id;
+			var url = "edit_user.php?action=edit" + "&id=" + this.id.substr(9);
 			window.location = url;
 		});
 	}	

@@ -18,6 +18,7 @@ $users = getUsers($mysqli);
 				<td align="right" id="addUserCol"><button id="new-user">Add User</button></td>
 			</tr>
 		</table>
+			
 		<table>
 			<thead>
 				<th>ID</th>
@@ -56,9 +57,9 @@ $users = getUsers($mysqli);
 '</td>');
 					echo('<td>'.$users[$i]["zip"].
 '</td>');
-					echo('<td>'.$users[$i]["date"].
+					echo('<td>'.date('m/d/Y', strtotime($users[$i]["date"])).
 '</td>');
-					echo('<td>'.$users[$i]["gender"].
+					echo('<td>'.(($users[$i]["gender"]) === 'm' ? 'Male' : 'Female').
 '</td>');
 					echo('<td><button class="editUser" id="edit-user'.$users[$i]["id"].'">Edit</button>'.'</td>');
 					echo('</tr>');
